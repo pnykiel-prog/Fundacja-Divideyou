@@ -1,6 +1,20 @@
 # Zdjęcia do dostarczenia (placeholdery → prawdziwe zdjęcia)
 Podmień pliki w `assets/img/` zachowując nazwy. Oryginalne propozycje z Unsplash poniżej.
 
+## ✅ Wypełnione prawdziwymi zdjęciami (8/16)
+- `photo-1486406146926-c627a92ad1ab.jpg` — Projekty (makieta+projekt)
+- `photo-1549923746-c502d488b3ea.jpg` — Partnerstwa (spotkanie/doradztwo)
+- `photo-1444723121867-7a241cacace9.jpg` — Finanse (zespół, wykresy)
+- `photo-1517048676732-d65bc937f952.jpg` — Konsorcja + Kontakt (planowanie)
+- `photo-1449824913935-59a10b8d2000.jpg` — Obszary (osiedle z zielenią)
+- `photo-1460317442991-0ec209397118.jpg` — Wiedza: rent-to-buy (apartamenty)
+- `photo-1531206715517-5c0ba140b2b8.jpg` — O Fundacji + akcjonariat (budynek)
+- `photo-1542744173-8e7e53415bb0.jpg` — Wiedza: montaż finansowy (budynek)
+
+Pozostałe sloty poniżej mają jeszcze placeholdery.
+
+---
+
 ## `assets/img/photo-1444723121867-7a241cacace9.jpg`
 - Oryginał (Unsplash): https://images.unsplash.com/photo-1444723121867-7a241cacace9?w=1600&q=72&auto=format&fit=crop
 - Używane w: Finanse.html
