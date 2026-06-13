@@ -127,10 +127,13 @@ footer.site .name img { height: 46px; }
 }
 /* skrzynki/boksy/pojemniki bez hover */
 .article .callout, .whitespots, .nextstep, .blend, .pd-aside, .pd-solution,
-.prep, .src, .article .compare-col, .kons-head .logobox, .booking-card {
+.prep, .src, .article .compare-col, .kons-head .logobox, .booking-card,
+.fund-highlight {
   border-radius: 16px;
 }
 .montage .m { border-radius: 14px; }
+/* siatki-paski z ciemną komórką środkową — zaokrąglenie + przycięcie rogów */
+.fund-flow, .bridge { border-radius: 16px; overflow: hidden; }
 
 /* pola formularza — spójne, łagodniejsze rogi */
 .field input, .field select, .field textarea { border-radius: 10px; }
