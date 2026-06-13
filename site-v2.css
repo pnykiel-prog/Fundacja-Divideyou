@@ -307,7 +307,7 @@ h1, h2, h3, h4, .display, .h-xl, .h-lg, .h-md { font-weight: 700; letter-spacing
   .hero .copy { padding-right: 220px; }
 }
 @media (max-width: 640px) {
-  .hero .inner { align-items: flex-start; }
+  .hero .inner { align-items: flex-start; min-height: 0; padding-bottom: 56px; }
   .hero .copy { padding-top: 188px; padding-right: 0; }
   .hero-globe { top: 18px; right: auto; left: 50%; bottom: auto; transform: translateX(-50%) scale(.78); }
   .hero .stage { height: auto; min-height: 620px; }

@@ -169,11 +169,11 @@ header.site .sp { flex: 1; }
 
 /* ---------- hero ---------- */
 .hero { position: relative; }
-.hero .stage { position: relative; height: clamp(520px, 72vh, 760px); }
+.hero .stage { position: relative; min-height: clamp(520px, 72vh, 760px); }
 .hero .media { position: absolute; inset: 0; place-items: start end; padding: 22px 26px; }
 .hero .scrim { position: absolute; inset: 0;
   background: linear-gradient(90deg, rgba(8,28,24,.82) 0%, rgba(8,28,24,.5) 42%, rgba(8,28,24,.12) 78%); }
-.hero .inner { position: relative; height: 100%; display: flex; align-items: center; }
+.hero .inner { position: relative; min-height: clamp(520px, 72vh, 760px); display: flex; align-items: center; padding-bottom: 92px; }
 .hero .copy { max-width: 720px; color: #fff; }
 .hero h1 { color: #fff; margin: 16px 0 0; }
 .hero .lead { color: rgba(255,255,255,.9); margin-top: 22px; max-width: 600px; }
