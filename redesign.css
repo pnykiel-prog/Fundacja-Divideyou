@@ -1,104 +1,108 @@
 /* =========================================================================
-   Divideyou — PRÓBKA wizualna (Kierunek 2: nowoczesny obywatelski)
-   Ładowana tylko na stronach z klasą .rd2 (Strona główna + Obszary).
-   Buduje na istniejącym systemie (midnight + 4 kolory filarów),
-   dodaje: miękkie karty, zaokrąglenia, spójne zdjęcia, motyw marki, cieplejszy hero.
+   Divideyou — Kierunek 2 (nowoczesny obywatelski) — STYL GLOBALNY
+   Buduje na systemie bazowym (midnight + 4 kolory filarów). Dodaje:
+   miękkie zaokrąglone karty z głębią, spójne tonalnie zdjęcia, motyw marki,
+   cieplejszy hero, większe logo. Ładowany na wszystkich stronach.
    ========================================================================= */
 
 /* --- motyw marki: pasek 4 kolorów filarów (sygnatura z logo) --- */
-.rd2 .brandbar {
+.brandbar {
   height: 5px; width: 84px; border: 0; margin: 0 0 20px; border-radius: 5px;
   background: linear-gradient(90deg,
     var(--c-senior) 0 25%, var(--c-house) 25% 50%,
     var(--c-energy) 50% 75%, var(--c-food) 75% 100%);
 }
-.rd2 .brandbar.wide { width: 100%; }
+.brandbar.wide { width: 100%; }
 
 /* --- przyciski: cieplejsze, lekko zaokrąglone --- */
-.rd2 .btn { border-radius: 12px; }
+.btn { border-radius: 12px; }
 
 /* --- karty: miękkie, zaokrąglone, z subtelną głębią + lift przy hover --- */
-.rd2 .svc {
-  border-radius: 18px; border: 1px solid var(--line); overflow: hidden;
+.svc, .consortium, .post, .form, .logo-panel {
+  border-radius: 18px;
   box-shadow: 0 2px 4px rgba(16,32,48,.04);
+}
+.svc, .post { overflow: hidden; }   /* by zdjęcie u góry miało zaokrąglone rogi */
+.svc, .consortium, .post {
   transition: transform .28s ease, box-shadow .28s ease, border-color .28s ease;
 }
-.rd2 .svc:hover {
+.svc:hover, .consortium:hover, .post:hover {
   transform: translateY(-6px);
   box-shadow: 0 30px 60px -30px rgba(16,44,72,.40);
   border-color: var(--brand-300);
 }
+.montage .m { border-radius: 14px; }
 
 /* --- zdjęcia w kartach: ujednolicone tonalnie (B4) + delikatny zoom --- */
-.rd2 .svc .media { height: 210px; transition: transform .6s ease; }
-.rd2 .svc:hover .media { transform: scale(1.05); }
-.rd2 .svc .media .corner { display: none; }           /* czystszy kadr */
-.rd2 .svc .media::after {                               /* spójny duotone na wszystkich zdjęciach */
+.svc .media { height: 210px; transition: transform .6s ease; }
+.svc:hover .media { transform: scale(1.05); }
+.svc .media .corner { display: none; }                 /* czystszy kadr */
+.svc .media::after {                                    /* spójny duotone na wszystkich zdjęciach */
   content: ""; position: absolute; inset: 0; pointer-events: none;
   background: linear-gradient(180deg, rgba(17,42,64,.05) 0%, rgba(17,42,64,.34) 100%);
 }
+.gallery .media { border-radius: 14px; overflow: hidden; }
 
 /* --- pasek „ścieżek" (segbar): jedna miękka karta z cieniem --- */
-.rd2 .segbar .card {
+.segbar .card {
   border-radius: 18px; overflow: hidden;
   box-shadow: 0 30px 64px -34px rgba(16,44,72,.42);
 }
-.rd2 .segbar .seg { transition: background .2s ease; }
+.segbar .seg { transition: background .2s ease; }
 
-/* --- hero (B7): głębsza, ciepła gradacja dla kontrastu i nastroju --- */
-.rd2 .hero .scrim {
+/* --- hero: głębsza, ciepła gradacja dla kontrastu i nastroju --- */
+.hero .scrim {
   background:
     linear-gradient(105deg, rgba(9,22,36,.88) 0%, rgba(9,22,36,.60) 40%, rgba(9,22,36,.16) 72%, rgba(9,22,36,0) 100%),
     linear-gradient(0deg, rgba(7,16,28,.55) 0%, rgba(7,16,28,0) 42%);
 }
-.rd2 .hero .copy .display { letter-spacing: -.025em; }
+.hero .copy .display { letter-spacing: -.025em; }
 
 /* =========================================================================
-   STATYSTYKI — kafle „w liczbach" (Kierunek 2: jasne, ciepłe karty)
+   STATYSTYKI — kafle „w liczbach" (jasne, ciepłe karty) i liczby w obszarach
    ========================================================================= */
-.rd2 .statgrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 36px; }
-.rd2 .stat-card {
+.statgrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 36px; }
+.stat-card {
   position: relative; background: var(--white); border: 1px solid var(--line);
   border-radius: 18px; padding: 30px 26px 26px; overflow: hidden;
   box-shadow: 0 2px 4px rgba(16,32,48,.04);
   transition: transform .28s ease, box-shadow .28s ease;
 }
-.rd2 .stat-card:hover { transform: translateY(-5px); box-shadow: 0 28px 56px -30px rgba(16,44,72,.38); }
-.rd2 .stat-card::before {                               /* kolorowy akcent filaru u góry */
+.stat-card:hover { transform: translateY(-5px); box-shadow: 0 28px 56px -30px rgba(16,44,72,.38); }
+.stat-card::before {
   content: ""; position: absolute; left: 0; top: 0; right: 0; height: 5px;
   background: var(--ac, var(--brand-600));
 }
-.rd2 .stat-card .n {
+.stat-card .n {
   display: block; font-family: var(--font-head); font-weight: 700;
   font-size: clamp(40px, 4.6vw, 56px); line-height: .95; letter-spacing: -.025em;
   color: var(--ac, var(--brand));
 }
-.rd2 .stat-card .n .u { font-size: .42em; vertical-align: .25em; margin-left: 3px; font-weight: 700; }
-.rd2 .stat-card .l { display: block; margin-top: 14px; font-size: 15px; line-height: 1.5; color: var(--ink-2); }
-.rd2 .stat-card .src { display: block; margin-top: 14px; font-size: 12px; color: var(--ink-3); }
-.rd2 .stat-note { margin-top: 22px; font-size: 13px; color: var(--ink-3); }
+.stat-card .n .u { font-size: .42em; vertical-align: .25em; margin-left: 3px; font-weight: 700; }
+.stat-card .l { display: block; margin-top: 14px; font-size: 15px; line-height: 1.5; color: var(--ink-2); }
+.stat-card .src { display: block; margin-top: 14px; font-size: 12px; color: var(--ink-3); }
+.stat-note { margin-top: 22px; font-size: 13px; color: var(--ink-3); }
 
-/* statystyki w obrębie obszaru (Obszary): zwarty rząd 3 liczb */
-.rd2 .pd-stats {
+.pd-stats {
   display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px;
   margin: 22px 0 4px; padding: 22px; background: var(--bg-2);
   border: 1px solid var(--line); border-radius: 16px;
 }
-.rd2 .pd-stats .s .n {
+.pd-stats .s .n {
   font-family: var(--font-head); font-weight: 700; font-size: clamp(30px, 3.4vw, 40px);
   line-height: 1; letter-spacing: -.02em; color: var(--ac, var(--brand));
 }
-.rd2 .pd-stats .s .n .u { font-size: .5em; vertical-align: .2em; margin-left: 2px; }
-.rd2 .pd-stats .s .l { display: block; margin-top: 9px; font-size: 13.5px; line-height: 1.45; color: var(--ink-2); }
+.pd-stats .s .n .u { font-size: .5em; vertical-align: .2em; margin-left: 2px; }
+.pd-stats .s .l { display: block; margin-top: 9px; font-size: 13.5px; line-height: 1.45; color: var(--ink-2); }
 
 /* --- logo nieco większe (nagłówek + stopka) --- */
-.rd2 .brand img { height: 48px; }
-.rd2 footer.site .name img { height: 46px; }
+.brand img { height: 48px; }
+footer.site .name img { height: 46px; }
 
-/* --- responsywność próbki --- */
+/* --- responsywność --- */
 @media (max-width: 900px) {
-  .rd2 .statgrid { grid-template-columns: repeat(2, 1fr); }
+  .statgrid { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 620px) {
-  .rd2 .statgrid, .rd2 .pd-stats { grid-template-columns: 1fr; }
+  .statgrid, .pd-stats { grid-template-columns: 1fr; }
 }

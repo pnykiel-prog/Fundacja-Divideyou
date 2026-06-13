@@ -6,12 +6,12 @@
    ============================================================ */
 
 :root {
-  /* default palette — PETROL */
-  --brand:      #0E3A33;
-  --brand-600:  #185749;
-  --brand-300:  #6FA396;
-  --brand-tint: #E8EFEC;
-  --accent:     #2E9E54;
+  /* paleta marki — MIDNIGHT (jedyna paleta) */
+  --brand:      #112A40;
+  --brand-600:  #1E466A;
+  --brand-300:  #7794AE;
+  --brand-tint: #E8ECF1;
+  --accent:     #2B6FB0;
 
   --ink:    #16201C;
   --ink-2:  #46524C;
@@ -35,28 +35,7 @@
   --sec-y: clamp(56px, 7vw, 104px);
 }
 
-[data-palette="forest"] {
-  --brand: #14402A; --brand-600: #1E5A3B; --brand-300: #76A88C; --brand-tint: #E7EFE8; --accent: #2F9E54;
-}
-[data-palette="midnight"] {
-  --brand: #112A40; --brand-600: #1E466A; --brand-300: #7794AE; --brand-tint: #E8ECF1; --accent: #2B6FB0;
-}
-[data-palette="plum"] {
-  --brand: #2E1A33; --brand-600: #4E2C56; --brand-300: #9A7AA1; --brand-tint: #EFE9F0; --accent: #9C2F63;
-}
-
-[data-head="sans"] { --font-head: 'Hanken Grotesk', system-ui, sans-serif; }
-[data-head="sans"] .display, [data-head="sans"] .h-xl, [data-head="sans"] .h-lg { font-weight: 700; letter-spacing: -.025em; }
-
-/* mono pillar accents — drop the rainbow, use brand */
-[data-pillars="mono"] .pillar { --accent: var(--brand-600) !important; }
-[data-pillars="mono"] .segbar .dot, [data-pillars="mono"] .svc .badge .dot { background: var(--brand-600) !important; }
-[data-pillars="mono"] .consortium .chip { background: var(--brand-600) !important; }
-
 .skip { position: absolute; left: -999px; }
-
-[data-density="compact"] { --sec-y: clamp(40px, 5vw, 72px); }
-[data-density="airy"]    { --sec-y: clamp(72px, 9vw, 140px); }
 
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
@@ -295,9 +274,7 @@ section[id="wiedza"] + section.band { border-top: 1px solid var(--line); }
 
 /* ---------- footer ---------- */
 footer.site { background: #0B201C; color: rgba(255,255,255,.72); padding-block: 64px 36px; }
-[data-palette="midnight"] footer.site { background:#0B1B29; }
-[data-palette="plum"] footer.site { background:#1E1124; }
-[data-palette="forest"] footer.site { background:#0C2418; }
+footer.site { background:#0B1B29; }
 footer.site .cols { display:grid; grid-template-columns: 1.6fr 1fr 1fr 1fr; gap: 40px; padding-bottom: 48px; border-bottom: 1px solid rgba(255,255,255,.14); }
 footer.site .name { font-family:var(--font-head); font-size: 26px; color:#fff; display:flex; align-items:center; gap:12px; }
 footer.site .name img { height: 40px; }
