@@ -5,9 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>Wiedza — mechanizmy współdzielenia | Divideyou</title>
 <meta name="description" content="Baza wiedzy: mieszkalnictwo społeczne, Rent-to-Buy, społeczności energetyczne, deinstytucjonalizacja usług społecznych i FAQ."/>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Hanken+Grotesk:wght@400;500;600;700;800&family=Spline+Sans+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="../assets/fonts/fonts.css"/>
 <link rel="stylesheet" href="../site.css"/>
 <link rel="stylesheet" href="../site-v2.css"/>
 </head>
@@ -19,7 +17,7 @@
   <span class="sp"></span>
   <a class="btn btn-primary" href="Kontakt.html">Skontaktuj się <span class="ar">→</span></a>
 </div></header><main data-screen-label="Wiedza">
-<section class="subhero h-plum" style="background-image:linear-gradient(90deg, rgba(56,35,73,.93) 0%, rgba(56,35,73,.74) 50%, rgba(56,35,73,.3) 100%), linear-gradient(rgba(0,0,0,.16),rgba(0,0,0,.16)), url('https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=1600&q=72&auto=format&fit=crop');background-size:cover;background-position:center;" data-screen-label="Wiedza"><div class="wrap">
+<section class="subhero h-plum" style="background-image:linear-gradient(90deg, rgba(56,35,73,.93) 0%, rgba(56,35,73,.74) 50%, rgba(56,35,73,.3) 100%), linear-gradient(rgba(0,0,0,.16),rgba(0,0,0,.16)), url('../assets/img/photo-1556761175-5973dc0f32e7.jpg');background-size:cover;background-position:center;" data-screen-label="Wiedza"><div class="wrap">
   <div class="breadcrumb"><a href="../index.html">Start</a><span class="sep">›</span><span class="cur">Wiedza</span></div><span class="eyebrow on-dark">Wiedza · blog</span><h1 class="h-xl">Zrozum mechanizmy ekonomii współdzielenia</h1><p class="lead">Krótkie, praktyczne artykuły o tym, jak działają mechanizmy pomostowe — w mieszkalnictwie, energetyce, usługach społecznych, finansowaniu i lokalnej żywności.</p>
   <div class="cta-row"><a class="btn btn-primary" href="Kontakt.html">Skontaktuj się <span class="ar">→</span></a><a class="btn btn-ghost on-dark" href="Obszary.html">Zobacz obszary</a></div>
 </div></section>
@@ -86,29 +84,6 @@
 <script>
   document.querySelectorAll('.chips').forEach(function(group){group.addEventListener('click', function(e){var opt=e.target.closest('.opt'); if(!opt) return; group.querySelectorAll('.opt').forEach(function(o){o.classList.remove('sel');}); opt.classList.add('sel');});});
   // obsługa formularza kontaktowego: contact-form.js
-</script>
-<div id="tweaks-root"></div>
-<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
-<script type="text/babel" src="../tweaks-panel.jsx"></script>
-<script type="text/babel">
-const TWEAK_DEFAULTS={palette:"midnight",head:"serif",density:"regular",pillars:"color"};
-const PALETTES=[{id:"petrol",c:"#0E3A33"},{id:"forest",c:"#14402A"},{id:"midnight",c:"#112A40"},{id:"plum",c:"#2E1A33"}];
-function TweaksApp(){
-  const [t,setTweak]=useTweaks(TWEAK_DEFAULTS);
-  React.useEffect(()=>{const r=document.documentElement; r.dataset.palette=t.palette; r.dataset.head=t.head; r.dataset.density=t.density; r.dataset.pillars=t.pillars;},[t.palette,t.head,t.density,t.pillars]);
-  const palVal=PALETTES.find(p=>p.id===t.palette)?.c||PALETTES[2].c;
-  return (<TweaksPanel title="Tweaki">
-    <TweakSection label="Kolorystyka" />
-    <TweakColor label="Kolor wiodący" value={palVal} options={PALETTES.map(p=>p.c)} onChange={(hex)=>setTweak('palette',PALETTES.find(p=>p.c===hex)?.id||'midnight')} />
-    <TweakRadio label="Akcenty obszarów" value={t.pillars} options={['color','mono']} onChange={(v)=>setTweak('pillars',v)} />
-    <TweakSection label="Typografia" />
-    <TweakRadio label="Nagłówki" value={t.head} options={['sans','serif']} onChange={(v)=>setTweak('head',v)} />
-    <TweakRadio label="Gęstość" value={t.density} options={['compact','regular','airy']} onChange={(v)=>setTweak('density',v)} />
-  </TweaksPanel>);
-}
-ReactDOM.createRoot(document.getElementById('tweaks-root')).render(<TweaksApp/>);
 </script>
 <script src="/contact-form.js" defer></script>
 <script src="../booking-modal.js"></script>

@@ -44,7 +44,15 @@ Formularz kontaktowy oraz modal rezerwacji rozmowy wysyłają zgłoszenia do fun
 
 > Dane SMTP trzymaj wyłącznie w zmiennych środowiskowych Vercela — nie commituj ich do repozytorium.
 
-## Zależności zewnętrzne (CDN)
-Strona wczytuje czcionki Google Fonts, zdjęcia z Unsplash oraz biblioteki React/Babel/D3 z CDN (unpkg/jsDelivr) — wymaga dostępu do internetu.
+## Zasoby — w pełni lokalne (offline)
+Strona nie zależy od zewnętrznych sieci CDN — wszystkie zasoby są serwowane lokalnie z repozytorium:
+- **Czcionki**: Google Fonts pobrane lokalnie do `assets/fonts/` (`fonts.css` + pliki `.woff2`).
+- **Globus na stronie głównej**: biblioteki D3 i topojson w `assets/vendor/`, dane map w `assets/countries-110m.json`.
+- **Grafiki**: w `assets/img/` (obecnie placeholdery — patrz niżej).
+
+Panel deweloperski „Tweaki" (React/Babel) został usunięty z wersji produkcyjnej. Jedyne połączenia wychodzące to zwykłe odnośniki do stron partnerów oraz wysyłka formularzy do `/api/send`.
+
+### Zdjęcia do podmiany
+W `assets/img/` znajdują się tymczasowe placeholdery (gradienty w kolorach marki). Aby wstawić docelowe zdjęcia, podmień pliki **zachowując ich nazwy** — lista nazw, oryginalnych propozycji i miejsc użycia jest w `assets/img/ZDJECIA.md`.
 
 © 2026 Fundacja Divideyou
