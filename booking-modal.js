@@ -94,7 +94,8 @@
   overlay.querySelector('#bkForm').addEventListener('submit', function () {
     var name = (overlay.querySelector('#bkName').value || '').trim();
     var email = (overlay.querySelector('#bkEmail').value || '').trim();
-    if (!name || !email) {
+    var emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    if (!name || !emailOk) {
       [overlay.querySelector('#bkName'), overlay.querySelector('#bkEmail')].forEach(function (f) {
         if (!f.value.trim()) { f.style.borderColor = '#b04a3a'; f.addEventListener('input', function once(){ f.style.borderColor=''; f.removeEventListener('input', once); }); }
       });
@@ -106,9 +107,38 @@
     try {
       nice = new Date(d + 'T00:00:00').toLocaleDateString('pl-PL', { weekday: 'long', day: 'numeric', month: 'long' });
     } catch (e) {}
-    overlay.querySelector('#bkRecap').textContent = nice + ', godz. ' + selectedSlot + ' \u00b7 ' + mode;
-    overlay.querySelector('.bk-form-wrap').style.display = 'none';
-    overlay.querySelector('#bkDone').style.display = 'block';
+
+    var submitBtn = overlay.querySelector('.bk-submit');
+    var original = submitBtn ? submitBtn.innerHTML : '';
+    if (submitBtn) { submitBtn.disabled = true; submitBtn.innerHTML = 'Rezerwuj\u0119\u2026'; }
+
+    fetch('/api/send', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        formType: 'booking',
+        name: name,
+        org: (overlay.querySelector('#bkOrg').value || '').trim(),
+        email: email,
+        phone: (overlay.querySelector('#bkPhone').value || '').trim(),
+        date: nice,
+        slot: selectedSlot,
+        mode: mode
+      })
+    }).then(function (r) {
+      return r.json().catch(function () { return { ok: r.ok }; });
+    }).then(function (data) {
+      if (!data || !data.ok) throw new Error((data && data.error) || 'err');
+      overlay.querySelector('#bkRecap').textContent = nice + ', godz. ' + selectedSlot + ' \u00b7 ' + mode;
+      overlay.querySelector('.bk-form-wrap').style.display = 'none';
+      overlay.querySelector('#bkDone').style.display = 'block';
+    }).catch(function (err) {
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = (err && err.message && err.message !== 'err') ? err.message : 'B\u0142\u0105d \u2014 spr\u00f3buj ponownie';
+        setTimeout(function () { submitBtn.innerHTML = original; }, 3500);
+      }
+    });
   });
 
   // intercept booking triggers anywhere on the page

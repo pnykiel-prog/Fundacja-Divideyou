@@ -1,0 +1,9 @@
+{
+  "name": "divideyou-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Statyczna strona Fundacji Divideyou z funkcją serverless do obsługi formularzy.",
+  "dependencies": {
+    "nodemailer": "^6.10.1"
+  }
+}

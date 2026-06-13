@@ -569,11 +569,7 @@
       opt.classList.add('sel');
     });
   });
-  document.getElementById('contactForm').addEventListener('submit', function(){
-    var b = this.querySelector('.submit');
-    b.innerHTML = 'Dziękujemy — odezwiemy się ✓';
-    b.style.background = 'var(--brand-600)';
-  });
+  // obsługa formularza kontaktowego: contact-form.js
 </script>
 
 <!-- ===== Hero spinning globe (real country outlines, monochrome) ===== -->
@@ -664,6 +660,7 @@ function TweaksApp() {
 }
 ReactDOM.createRoot(document.getElementById('tweaks-root')).render(<TweaksApp/>);
 </script>
+<script src="/contact-form.js" defer></script>
 <script src="booking-modal.js"></script>
 </body>
 </html>

@@ -97,7 +97,7 @@
 <a class="floatcta" href="Kontakt.html" aria-label="Skontaktuj się"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5h16v12H7l-3 3z"/></svg><span>Skontaktuj się</span></a>
 <script>
   document.querySelectorAll('.chips').forEach(function(group){group.addEventListener('click', function(e){var opt=e.target.closest('.opt'); if(!opt) return; group.querySelectorAll('.opt').forEach(function(o){o.classList.remove('sel');}); opt.classList.add('sel');});});
-  var cf=document.getElementById('contactForm'); if(cf) cf.addEventListener('submit', function(){var b=this.querySelector('.submit'); b.innerHTML='Dziękujemy — odezwiemy się ✓'; b.style.background='var(--brand-600)';});
+  // obsługa formularza kontaktowego: contact-form.js
 </script>
 <div id="tweaks-root"></div>
 <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
@@ -122,5 +122,6 @@ function TweaksApp(){
 }
 ReactDOM.createRoot(document.getElementById('tweaks-root')).render(<TweaksApp/>);
 </script>
+<script src="/contact-form.js" defer></script>
 <script src="../booking-modal.js"></script>
 </body></html>
