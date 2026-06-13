@@ -57,6 +57,7 @@
     linear-gradient(0deg, rgba(7,16,28,.55) 0%, rgba(7,16,28,0) 42%);
 }
 .hero .copy .display { letter-spacing: -.025em; }
+.hero .inner { padding-top: 64px; }   /* odstęp nagłówka od nagłówka strony */
 
 /* =========================================================================
    STATYSTYKI — kafle „w liczbach" (jasne, ciepłe karty) i liczby w obszarach
@@ -102,6 +103,9 @@ footer.site .name img { height: 46px; }
 /* --- responsywność --- */
 @media (max-width: 900px) {
   .statgrid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+  .hero .inner { padding-top: 0; }   /* na telefonach globus jest na górze */
 }
 @media (max-width: 620px) {
   .statgrid, .pd-stats { grid-template-columns: 1fr; }
