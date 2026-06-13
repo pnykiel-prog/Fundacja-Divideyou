@@ -106,3 +106,31 @@ footer.site .name img { height: 46px; }
 @media (max-width: 620px) {
   .statgrid, .pd-stats { grid-template-columns: 1fr; }
 }
+
+/* =========================================================================
+   Pozostałe rodziny kart i przycisków — pełne pokrycie zaokrągleń (Kierunek 2)
+   ========================================================================= */
+/* karty z hover (białe tło + ramka, klikalne / treściowe) */
+.why-card, .partner, .proj, .pillar, .cat, .mat, .ptile, .fund, .value {
+  border-radius: 18px;
+  transition: transform .28s ease, box-shadow .28s ease, border-color .28s ease;
+}
+.why-card:hover, .partner:hover, .proj:hover, .pillar:hover,
+.cat:hover, .mat:hover, .ptile:hover, .fund:hover, .value:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 30px 60px -30px rgba(16,44,72,.40);
+  border-color: var(--brand-300);
+}
+/* skrzynki/boksy/pojemniki bez hover */
+.article .callout, .whitespots, .nextstep, .blend, .pd-aside, .pd-solution,
+.prep, .src, .article .compare-col, .kons-head .logobox, .booking-card {
+  border-radius: 16px;
+}
+.montage .m { border-radius: 14px; }
+
+/* pola formularza — spójne, łagodniejsze rogi */
+.field input, .field select, .field textarea { border-radius: 10px; }
+
+/* przyciski tekstowe z obramowaniem (np. „Przeczytaj więcej", „Zobacz…") */
+.btn-text { border-radius: 12px; }
+
