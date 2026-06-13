@@ -119,7 +119,9 @@ h1, h2, h3, h4, .display, .h-xl, .h-lg, .h-md { font-weight: 700; letter-spacing
 @media (max-width: 1080px) {
   .roles { grid-template-columns: 1fr; }
   .bridge { grid-template-columns: 1fr; }
-  .bridge .link { width: 100%; min-height: 48px; height: 48px; transform: rotate(90deg); }
+  .bridge .link { width: 100%; min-height: 44px; height: 44px; transform: none; }
+  .bridge .link::before { top: 0; bottom: 0; left: 50%; right: auto; width: 2px; height: auto; transform: translateX(-50%); }
+  .bridge .link::after { content: "⇅"; }
   .contact { grid-template-columns: 1fr; }
   .nextstep { grid-template-columns: 1fr; }
 }
