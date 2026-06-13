@@ -338,3 +338,40 @@ footer.site .legal .sp { flex:1; }
   .sec-head { grid-template-columns: 1fr; }
   footer.site .cols { grid-template-columns: 1fr; gap: 28px; }
 }
+
+/* ---------- pasek górny: nie rozpychaj / ucinaj tekst ---------- */
+.util .wrap span:not(.sp) { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.util .wrap a { white-space: nowrap; flex: none; }
+
+/* ---------- hamburger + menu mobilne ---------- */
+.nav-toggle {
+  display: none; flex-direction: column; justify-content: center; gap: 5px;
+  width: 44px; height: 44px; padding: 11px; border: 0; background: transparent; cursor: pointer;
+}
+.nav-toggle span { display: block; height: 2px; width: 100%; background: var(--brand); border-radius: 2px; transition: transform .22s, opacity .22s; }
+.nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-toggle.open span:nth-child(2) { opacity: 0; }
+.nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+.mobile-nav { position: fixed; inset: 0; z-index: 70; background: rgba(8,20,30,.5); opacity: 0; pointer-events: none; transition: opacity .25s; }
+.mobile-nav.open { opacity: 1; pointer-events: auto; }
+.mobile-nav-inner {
+  position: absolute; top: 0; right: 0; height: 100%; width: min(330px, 84vw);
+  background: #fff; box-shadow: -14px 0 44px rgba(0,0,0,.20);
+  transform: translateX(100%); transition: transform .28s ease;
+  display: flex; flex-direction: column; padding: 76px 24px 28px; overflow-y: auto;
+}
+.mobile-nav.open .mobile-nav-inner { transform: translateX(0); }
+.mobile-nav-inner nav { display: flex; flex-direction: column; }
+.mobile-nav-inner a { font-size: 17px; font-weight: 500; color: var(--ink); padding: 15px 4px; border-bottom: 1px solid var(--line); }
+.mobile-nav-inner a:hover { color: var(--brand-600); }
+.mobile-nav-inner a.btn { margin-top: 20px; border-bottom: 0; justify-content: center; color: #fff; }
+.mobile-nav-close { position: absolute; top: 16px; right: 16px; width: 44px; height: 44px; border: 0; background: transparent; font-size: 30px; line-height: 1; color: var(--brand); cursor: pointer; }
+
+@media (max-width: 980px) {
+  .nav-toggle { display: flex; }
+}
+@media (max-width: 600px) {
+  header.site .wrap > .btn-primary { display: none; } /* kontakt jest w menu mobilnym */
+  .brand .name { font-size: 18px; }
+}
