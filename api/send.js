@@ -23,7 +23,8 @@ module.exports = async function handler(req, res) {
   body = body || {};
 
   // Honeypot — boty wypełniają ukryte pole; udajemy sukces i nic nie wysyłamy.
-  if ((body.company_website || '').toString().trim()) {
+  // Nazwa neutralna (dy_hp), by przeglądarki nie autouzupełniały pola.
+  if ((body.dy_hp || '').toString().trim()) {
     return res.status(200).json({ ok: true });
   }
 

@@ -4,11 +4,12 @@
   var form = document.getElementById('contactForm');
   if (!form) return;
 
-  // Honeypot na boty — ukryte pole; wypełnione = zgłoszenie ignorowane po stronie API.
+  // Honeypot na boty — ukryte pole o neutralnej nazwie (bez słów typu
+  // company/website/email/url, które przeglądarki autouzupełniają).
   var hp = document.createElement('input');
   hp.type = 'text';
-  hp.name = 'company_website';
-  hp.id = 'company_website';
+  hp.name = 'dy_hp';
+  hp.id = 'dy_hp';
   hp.tabIndex = -1;
   hp.setAttribute('autocomplete', 'off');
   hp.setAttribute('aria-hidden', 'true');
@@ -53,7 +54,7 @@
         email: email,
         phone: val('phone'),
         msg: val('msg'),
-        company_website: hp.value
+        dy_hp: hp.value
       })
     }).then(function (r) {
       return r.json().catch(function () { return { ok: r.ok }; });
