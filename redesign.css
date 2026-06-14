@@ -141,3 +141,30 @@ footer.site .name img { height: 46px; }
 /* przyciski tekstowe z obramowaniem (np. „Przeczytaj więcej", „Zobacz…") */
 .btn-text { border-radius: 12px; }
 
+/* =========================================================================
+   FAQ — akordeon (rozwijane odpowiedzi, Kierunek 2)
+   ========================================================================= */
+.faq { display: grid; gap: 12px; }
+.faq details {
+  background: var(--white); border: 1px solid var(--line); border-radius: 14px;
+  overflow: hidden; transition: box-shadow .2s ease, border-color .2s ease;
+}
+.faq details[open] { border-color: var(--brand-300); box-shadow: 0 20px 44px -28px rgba(16,44,72,.4); }
+.faq summary {
+  cursor: pointer; list-style: none; padding: 19px 22px;
+  font-family: var(--font-head); font-size: 18.5px; line-height: 1.25; color: var(--ink);
+  display: flex; justify-content: space-between; align-items: center; gap: 16px;
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after {
+  content: "+"; flex: none; font-size: 26px; line-height: 1; color: var(--brand-600);
+  transition: transform .2s ease;
+}
+.faq details[open] summary::after { transform: rotate(45deg); }
+.faq summary:hover { color: var(--brand-600); }
+.faq .faq-a { padding: 0 22px 20px; color: var(--ink-2); font-size: 15.5px; line-height: 1.62; }
+.faq .faq-a p { margin: 0 0 12px; }
+.faq .faq-a p:last-child { margin-bottom: 0; }
+.faq .faq-a ul { margin: 6px 0 12px; padding-left: 20px; }
+.faq .faq-a li { margin: 4px 0; }
+
