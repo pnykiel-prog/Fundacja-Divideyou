@@ -79,7 +79,7 @@ module.exports = async function handler(req, res) {
   }
 
   const transporter = nodemailer.createTransport({ host, port, secure, auth: { user, pass } });
-  const to = process.env.MAIL_TO || 'office@divideyou.com';
+  const to = process.env.MAIL_TO || 'fundacja@divideyou.com';
   const from = process.env.MAIL_FROM || ('Strona Divideyou <' + user + '>');
 
   try {
