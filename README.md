@@ -28,17 +28,18 @@ Formularz kontaktowy oraz modal rezerwacji rozmowy wysyłają zgłoszenia do fun
 
 ### Wdrożenie na Vercel
 1. Zaimportuj repozytorium na [vercel.com](https://vercel.com) (New Project → Import). Vercel automatycznie wykryje statyczne pliki w katalogu głównym oraz funkcję w `api/`. Build nie jest potrzebny.
-2. W **Settings → Environment Variables** ustaw dane skrzynki SMTP fundacji:
+2. W **Settings → Environment Variables** ustaw dane skrzynki SMTP fundacji (poczta OVH):
 
-   | Zmienna | Opis | Przykład |
+   | Zmienna | Opis | Wartość (OVH) |
    |---|---|---|
-   | `SMTP_HOST` | host serwera SMTP | `smtp.example.com` |
-   | `SMTP_PORT` | port (587 = STARTTLS, 465 = SSL) | `587` |
-   | `SMTP_SECURE` | `true` dla portu 465, w innym wypadku `false` | `false` |
-   | `SMTP_USER` | login skrzynki | `fundacja@divideyou.com` |
+   | `SMTP_HOST` | host serwera SMTP OVH | `ssl0.ovh.net` |
+   | `SMTP_PORT` | port (465 = SSL, zalecany; 587 = STARTTLS) | `465` |
+   | `SMTP_SECURE` | `true` dla portu 465, `false` dla 587 | `true` |
+   | `SMTP_USER` | pełny adres skrzynki | `fundacja@divideyou.com` |
    | `SMTP_PASS` | hasło skrzynki | `••••••` |
    | `MAIL_TO` | odbiorca zgłoszeń (opcjonalne) | `fundacja@divideyou.com` |
    | `MAIL_FROM` | nadawca (opcjonalne) | `Strona Divideyou <fundacja@divideyou.com>` |
+
 
 3. **Deploy**. Po wdrożeniu formularze będą realnie wysyłać maile. Endpoint: `POST /api/send`.
 
