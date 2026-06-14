@@ -16,6 +16,16 @@
   hp.style.cssText = 'position:absolute;left:-9999px;width:1px;height:1px;opacity:0;pointer-events:none';
   form.appendChild(hp);
 
+  // oznacz pola wymagane gwiazdką (Imię, E-mail, Opis)
+  ['name', 'email', 'msg'].forEach(function (id) {
+    var lab = form.querySelector('label[for="' + id + '"]');
+    if (lab && !lab.querySelector('.req')) {
+      var s = document.createElement('span');
+      s.className = 'req'; s.textContent = ' *'; s.style.color = '#b04a3a';
+      lab.appendChild(s);
+    }
+  });
+
   function val(id) {
     var el = document.getElementById(id);
     return el ? (el.value || '').trim() : '';
@@ -25,20 +35,28 @@
     return el ? el.textContent.trim() : '';
   }
 
+  function flag(id) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    el.style.borderColor = '#b04a3a';
+    el.addEventListener('input', function once() { el.style.borderColor = ''; el.removeEventListener('input', once); });
+  }
+  function fail(btn, original, message, focusId) {
+    if (focusId) { flag(focusId); var fe = document.getElementById(focusId); if (fe) fe.focus(); }
+    if (btn) { btn.innerHTML = message; setTimeout(function () { btn.innerHTML = original; }, 3000); }
+  }
+
   form.addEventListener('submit', function (e) {
     e.preventDefault();
     var btn = form.querySelector('.submit');
     var original = btn ? btn.innerHTML : '';
     var name = val('name');
     var email = val('email');
+    var msg = val('msg');
 
-    if (!name || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      if (btn) {
-        btn.innerHTML = 'Uzupełnij imię i poprawny e-mail';
-        setTimeout(function () { btn.innerHTML = original; }, 2500);
-      }
-      return;
-    }
+    if (!name) { return fail(btn, original, 'Uzupełnij imię i nazwisko', 'name'); }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { return fail(btn, original, 'Podaj poprawny adres e-mail', 'email'); }
+    if (!msg) { return fail(btn, original, 'Uzupełnij opis problemu i kontekst', 'msg'); }
 
     if (btn) { btn.disabled = true; btn.innerHTML = 'Wysyłanie…'; }
 
