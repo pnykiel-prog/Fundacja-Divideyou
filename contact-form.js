@@ -16,6 +16,9 @@
   hp.style.cssText = 'position:absolute;left:-9999px;width:1px;height:1px;opacity:0;pointer-events:none';
   form.appendChild(hp);
 
+  // Znacznik czasu — wysłanie w <2 s od załadowania = bot (sprawdzane na serwerze).
+  var loadedAt = Date.now();
+
   // oznacz pola wymagane gwiazdką (Imię, E-mail, Opis)
   ['name', 'email', 'msg'].forEach(function (id) {
     var lab = form.querySelector('label[for="' + id + '"]');
@@ -57,6 +60,8 @@
     if (!name) { return fail(btn, original, 'Uzupełnij imię i nazwisko', 'name'); }
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { return fail(btn, original, 'Podaj poprawny adres e-mail', 'email'); }
     if (!msg) { return fail(btn, original, 'Uzupełnij opis problemu i kontekst', 'msg'); }
+    var phone = val('phone');
+    if (phone && /[A-Za-z]/.test(phone)) { return fail(btn, original, 'Podaj poprawny numer telefonu (same cyfry)', 'phone'); }
 
     if (btn) { btn.disabled = true; btn.innerHTML = 'Wysyłanie…'; }
 
@@ -70,9 +75,10 @@
         name: name,
         org: val('org'),
         email: email,
-        phone: val('phone'),
+        phone: phone,
         msg: val('msg'),
-        dy_hp: hp.value
+        dy_hp: hp.value,
+        dy_t: loadedAt
       })
     }).then(function (r) {
       return r.json().catch(function () { return { ok: r.ok }; });

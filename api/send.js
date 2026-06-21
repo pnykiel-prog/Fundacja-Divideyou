@@ -28,6 +28,12 @@ module.exports = async function handler(req, res) {
     return res.status(200).json({ ok: true });
   }
 
+  // Pułapka czasowa — formularz wysłany w mniej niż 2 s = automat. Udajemy sukces.
+  const dyT = parseInt(body.dy_t, 10);
+  if (dyT && Date.now() - dyT < 2000) {
+    return res.status(200).json({ ok: true });
+  }
+
   const formType = body.formType === 'booking' ? 'booking' : 'contact';
   const name = (body.name || '').toString().trim();
   const email = (body.email || '').toString().trim();
@@ -35,6 +41,24 @@ module.exports = async function handler(req, res) {
 
   if (!name || !emailOk) {
     return res.status(400).json({ ok: false, error: 'Podaj imię i poprawny adres e-mail.' });
+  }
+
+  const phone = (body.phone || '').toString().trim();
+  const org = (body.org || '').toString();
+  const msg = (body.msg || '').toString();
+
+  // Telefon (jeśli podany) musi wyglądać jak numer — litery = bot/pomyłka.
+  if (phone && (/[A-Za-z]/.test(phone) || !/[0-9]/.test(phone))) {
+    return res.status(400).json({ ok: false, error: 'Podaj poprawny numer telefonu (same cyfry).' });
+  }
+  // Limity długości — odrzuca zalewy danych.
+  if (name.length > 120 || email.length > 160 || org.length > 160 || phone.length > 40 || msg.length > 4000) {
+    return res.status(400).json({ ok: false, error: 'Zbyt długa treść w jednym z pól.' });
+  }
+  // Anty-spam: linki / typowy spam w treści = bot. Udajemy sukces i nie wysyłamy.
+  const blob = name + ' ' + org + ' ' + msg;
+  if (/(https?:\/\/|www\.[a-z0-9]|\[url|<a\s|\bviagra\b|\bcasino\b|\bcrypto\b|\bporn\b)/i.test(blob)) {
+    return res.status(200).json({ ok: true });
   }
 
   const fieldsOrder = formType === 'booking'

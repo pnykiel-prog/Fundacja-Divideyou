@@ -48,6 +48,7 @@
             '<div class="field"><label for="bkMode">Forma</label><select id="bkMode"><option>Telefon</option><option>Wideo (online)</option></select></div>' +
           '</div>' +
           '<div class="field"><label>Preferowana godzina</label><div class="bk-slots" id="bkSlots">' + slotsHtml + '</div></div>' +
+          '<input type="text" name="dy_hp" id="bkHp" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;pointer-events:none"/>' +
           '<button class="btn btn-primary bk-submit" type="submit">Zarezerwuj termin <span class="ar">\u2192</span></button>' +
           '<p class="bk-privacy">Rezerwuj\u0105c termin akceptujesz polityk\u0119 prywatno\u015bci i przetwarzanie danych (RODO).</p>' +
         '</form>' +
@@ -76,9 +77,11 @@
     selectedSlot = opt.getAttribute('data-slot');
   });
 
+  var openedAt = 0;
   function open() {
     overlay.classList.add('open');
     document.body.style.overflow = 'hidden';
+    openedAt = Date.now();
     var n = overlay.querySelector('#bkName');
     if (n) setTimeout(function () { n.focus(); }, 60);
   }
@@ -101,6 +104,13 @@
       });
       return;
     }
+    var phone = (overlay.querySelector('#bkPhone').value || '').trim();
+    if (phone && /[A-Za-z]/.test(phone)) {
+      var pf = overlay.querySelector('#bkPhone');
+      pf.style.borderColor = '#b04a3a'; pf.focus();
+      pf.addEventListener('input', function once(){ pf.style.borderColor=''; pf.removeEventListener('input', once); });
+      return;
+    }
     var d = overlay.querySelector('#bkDate').value;
     var mode = overlay.querySelector('#bkMode').value;
     var nice = d;
@@ -120,10 +130,12 @@
         name: name,
         org: (overlay.querySelector('#bkOrg').value || '').trim(),
         email: email,
-        phone: (overlay.querySelector('#bkPhone').value || '').trim(),
+        phone: phone,
         date: nice,
         slot: selectedSlot,
-        mode: mode
+        mode: mode,
+        dy_hp: (overlay.querySelector('#bkHp').value || ''),
+        dy_t: openedAt
       })
     }).then(function (r) {
       return r.json().catch(function () { return { ok: r.ok }; });
